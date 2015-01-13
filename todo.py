@@ -1,14 +1,19 @@
-from flask import Flask, redirect
+from flask import Flask
 from flask.ext.restplus import Api, Resource
 
+# required for task id generation
 import uuid
 
-from operator import itemgetter
+app = Flask(__name__, static_folder='static')
 
-app = Flask(__name__, static_folder='../static')
+
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
+
 
 # swagger app wrapper
-api = Api(app)
+api = Api(app, ui=False)
 
 # tasks persisted in the app scope
 TASKS = dict()
@@ -23,7 +28,7 @@ parser.add_argument('completed', type=bool)
 @api.route('/tasks')
 class TaskList(Resource):
     def get(self):
-        return sorted(TASKS.values(), key=itemgetter('position'))
+        return TASKS.values()
 
     def post(self):
         args = parser.parse_args()
@@ -46,6 +51,7 @@ class Task(Resource):
         if args['completed'] is not None:
             task['completed'] = args['completed']
 
+        return task, 204
 
 if __name__ == '__main__':
     app.run(debug=True)
