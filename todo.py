@@ -22,7 +22,7 @@ TASKS = dict()
 parser = api.parser()
 parser.add_argument('label', type=str)
 parser.add_argument('position', type=int)
-parser.add_argument('completed', type=bool)
+parser.add_argument('completed', type=int)
 
 
 @api.route('/tasks')
@@ -33,7 +33,7 @@ class TaskList(Resource):
     def post(self):
         args = parser.parse_args()
         task_id = str(uuid.uuid4())
-        TASKS[task_id] = {'task_id': task_id, 'label': args['label'], 'position': 0, 'completed': False}
+        TASKS[task_id] = {'task_id': task_id, 'label': args['label'], 'position': 0, 'completed': 0}
         return TASKS[task_id], 204
 
 
@@ -52,6 +52,7 @@ class Task(Resource):
             task['completed'] = args['completed']
 
         return task, 204
+
 
 if __name__ == '__main__':
     app.run(debug=True)

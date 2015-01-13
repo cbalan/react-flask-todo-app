@@ -1,5 +1,139 @@
 <html>
-    <body>
-        <h1>hello</h1>
-    </body>
+<head>
+    <title>Hello React</title>
+    <script src="http://fb.me/react-0.12.2.min.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+</head>
+<body>
+<div id="content"></div>
+<script type="text/jsx">
+    var AddTaskForm = React.createClass({
+        handleSubmit: function(e) {
+            e.preventDefault();
+            var label = this.refs.label.getDOMNode().value.trim();
+            if (!label) {
+                return;
+            }
+
+            this.props.onTaskSubmit({label: label});
+            this.refs.label.getDOMNode().value = '';
+            return;
+        },
+        render: function() {
+            return (
+                <form className="addTaskForm" onSubmit={this.handleSubmit}>
+                    <input type="text" placeholder="What needs to be done ?" ref="label" />
+                    <input type="submit" value="Add Todo" />
+                </form>
+            );
+        }
+    });
+
+    var Task = React.createClass({
+        handleChange: function(event) {
+            event.preventDefault();
+            this.props.task.completed = (this.props.task.completed === 0)?1:0;
+            this.props.onTaskUpdate(this.props.task);
+        },
+
+        render: function() {
+            return (
+                <div className="task">
+                    <input type="checkbox" checked={this.props.task.completed} ref="completed" onChange={this.handleChange}/>
+                    <h2 className="taskLabel">
+                        {this.props.task.label}
+                    </h2>
+                </div>
+            );
+        }
+    });
+
+    var TasksList = React.createClass({
+        handleTaskUpdate: function(task){
+            this.props.onTaskUpdate(task);
+        },
+
+        render: function() {
+            var self = this;
+            var tasks = this.props.data.map(function (task) {
+                return (
+                    <li>
+                        <Task task={task} onTaskUpdate={self.handleTaskUpdate}/>
+                    </li>
+                );
+            });
+            return (
+                    <ul className="commentList">
+                        {tasks}
+                    </ul>
+            );
+        }
+    });
+
+    var TasksBox = React.createClass({
+        loadTaskList: function() {
+            $.ajax({
+                url: this.props.url,
+                dataType: 'json',
+                success: function(data) {
+                    this.setState({data: data});
+                }.bind(this),
+                error: function(xhr, status, err) {
+                    console.error(this.props.url, status, err.toString());
+                }.bind(this)
+            });
+        },
+        handleTaskSubmit: function(task) {
+            $.ajax({
+                type: "POST",
+                url: this.props.url,
+                data: task,
+                success: this.loadTaskList,
+                error: function(xhr, status, err) {
+                    console.error(this.props.url, status, err.toString());
+                }.bind(this)
+            });
+        },
+
+        handleTaskUpdate: function(task) {
+            $.ajax({
+                type: "PATCH",
+                url: this.props.url + '/' + task.task_id,
+                data: {
+                    completed: task.completed,
+                    position: task.position
+                },
+                success: this.loadTaskList,
+                error: function(xhr, status, err) {
+                    console.error(this.props.url, status, err.toString());
+                }.bind(this)
+            });
+        },
+
+        getInitialState: function() {
+            return {data: []};
+        },
+        componentDidMount: function() {
+            this.loadTaskList();
+//            setInterval(this.loadTaskList, this.props.pollInterval);
+        },
+        render: function() {
+            return (
+                    <div className="tasksBox">
+                        <h1>Todos</h1>
+                        <AddTaskForm onTaskSubmit={this.handleTaskSubmit}/>
+                        <TasksList data={this.state.data} onTaskUpdate={this.handleTaskUpdate}/>
+                    </div>
+            );
+        }
+    });
+
+    React.render(
+            <TasksBox url="/tasks" pollInterval="{5000}"  />,
+            document.getElementById('content')
+    );
+
+</script>
+</body>
 </html>
