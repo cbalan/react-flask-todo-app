@@ -1,2 +1,2 @@
 Flask
-flask-restful-swagger
+Flask-RestPlus
