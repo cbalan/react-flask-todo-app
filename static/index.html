@@ -32,7 +32,6 @@
 
     var Task = React.createClass({
         handleChange: function(event) {
-            event.preventDefault();
             this.props.task.completed = (this.props.task.completed === 0)?1:0;
             this.props.onTaskUpdate(this.props.task);
         },
@@ -64,9 +63,9 @@
                 );
             });
             return (
-                    <ul className="commentList">
-                        {tasks}
-                    </ul>
+                <ul className="taskList">
+                    {tasks}
+                </ul>
             );
         }
     });
@@ -77,7 +76,8 @@
                 url: this.props.url,
                 dataType: 'json',
                 success: function(data) {
-                    this.setState({data: data});
+                    var itemsLeft = data.filter(function(task){return task.completed === 0}).length;
+                    this.setState({data: data, itemsLeft:itemsLeft});
                 }.bind(this),
                 error: function(xhr, status, err) {
                     console.error(this.props.url, status, err.toString());
@@ -114,16 +114,19 @@
         getInitialState: function() {
             return {data: []};
         },
+
         componentDidMount: function() {
             this.loadTaskList();
 //            setInterval(this.loadTaskList, this.props.pollInterval);
         },
+
         render: function() {
             return (
                     <div className="tasksBox">
                         <h1>Todos</h1>
                         <AddTaskForm onTaskSubmit={this.handleTaskSubmit}/>
                         <TasksList data={this.state.data} onTaskUpdate={this.handleTaskUpdate}/>
+                        <span>{this.state.itemsLeft} items left</span>
                     </div>
             );
         }
