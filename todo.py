@@ -1,5 +1,5 @@
 from flask import Flask, redirect
-from flask.ext.restful import reqparse, Api, Resource
+from flask.ext.restful import reqparse, Api, Resource, abort
 from flask_restful_swagger import swagger
 import uuid
 
@@ -32,7 +32,7 @@ class TaskList(Resource):
     def post(self):
         args = parser.parse_args()
         task_id = str(uuid.uuid4())
-        TASKS[task_id] = {'task_id': task_id, 'label': args['label'], 'position': 0}
+        TASKS[task_id] = {'task_id': task_id, 'label': args['label'], 'position': 0, 'completed': False}
         return TASKS[task_id], 204
 
 
@@ -42,8 +42,15 @@ class Task(Resource):
     )
     def patch(self, task_id):
         args = parser.parse_args()
-        task = {'task': args['task']}
-        TASKS[task_id] = task
+        if task_id not in TASKS:
+            abort(404, message="Task {} doesn't exist".format(task_id))
+
+        task = TASKS[task_id]
+        if args['position'] is not None:
+            task['position'] = args['position']
+
+        if args['completed'] is not None:
+            task['completed'] = args['completed']
 
 
 api.add_resource(TaskList, '/tasks')
