@@ -81,7 +81,14 @@ define([
                 url: this.props.url,
                 dataType: 'json',
                 success: function (data) {
-                    this.setState({data: data, itemsLeft: this.getTasksLeft().length});
+                    this.setState({
+                        data: data.sort(function (a, b) {
+                            return a.position - b.position;
+                        }),
+                        itemsLeft: data.filter(function (task) {
+                            return task.completed === 0;
+                        }).length
+                    });
                 }.bind(this),
                 error: function (xhr, status, err) {
                     console.error(this.props.url, status, err.toString());
