@@ -1,4 +1,5 @@
-# TicTailHack 2.2 reply
+# Todo app
+Sample application build with flask and facebook react
 
 ## Installation
 Inspired from https://github.com/abhiomkar/flask-react
