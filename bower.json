@@ -1,0 +1,12 @@
+{
+  "name": "TicTailHack2.2-reply",
+  "version": "0.0.1",
+  "dependencies": {
+    "bootstrap": "*",
+    "jquery": "*",
+    "requirejs": "*",
+    "react": "*",
+    "font-awesome": "*",
+    "async": "*"
+  }
+}

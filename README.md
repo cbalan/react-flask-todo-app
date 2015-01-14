@@ -1,5 +1,24 @@
 # TicTailHack 2.2 reply
 
+## Installation
+Inspired from https://github.com/abhiomkar/flask-react
+
+ * install python dependencies
+
+        pip install -r requirements.txt
+
+ * install js dependencies
+
+        bower install
+
+ * compile jsx files using [React tool](http://facebook.github.io/react/docs/tooling-integration.html#productionizing-precompiled-jsx) for development purpose
+
+        jsx --watch static/jsx static/js
+
+ * run flask server
+
+        python todo.py
+
 ## Initial design
 
 ### Client side
