@@ -21,7 +21,7 @@ define([
             return (
                 <form className="addTaskForm form-horizontal" onSubmit={this.handleSubmit}>
                     <div className="form-group">
-                        <div className="col-sm-9">
+                        <div className="col-sm-10">
                             <input type="text" className="form-control input-large"  placeholder="What needs to be done ?" ref="label" />
                         </div>
                         <div className="col-sm-2">
