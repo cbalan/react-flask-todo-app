@@ -1,6 +1,7 @@
 <html>
 <head>
-    <title>Hello React</title>
+    <title>Todos</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/app.css"/>
     <script src="http://fb.me/react-0.12.2.min.js"></script>
     <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
@@ -20,6 +21,7 @@
             this.refs.label.getDOMNode().value = '';
             return;
         },
+
         render: function() {
             return (
                 <form className="addTaskForm" onSubmit={this.handleSubmit}>
@@ -31,18 +33,29 @@
     });
 
     var Task = React.createClass({
+        getInitialState: function() {
+            return this.props.task;
+        },
+
         handleChange: function(event) {
-            this.props.task.completed = (this.props.task.completed === 0)?1:0;
-            this.props.onTaskUpdate(this.props.task);
+            event.preventDefault();
+            this.state.completed = (this.state.completed === 0)?1:0;
+            this.props.onTaskUpdate(this.state);
+            return;
         },
 
         render: function() {
+            var classes = 'task';
+            if (this.state.completed === 1) {
+                classes += ' completed';
+            }
+
             return (
-                <div className="task">
-                    <input type="checkbox" checked={this.props.task.completed} ref="completed" onChange={this.handleChange}/>
-                    <h2 className="taskLabel">
-                        {this.props.task.label}
-                    </h2>
+                <div className={classes}>
+                    <input type="checkbox" checked={this.state.completed} onChange={this.handleChange}/>
+                    <span className="taskLabel">
+                        {this.state.label}
+                    </span>
                 </div>
             );
         }
@@ -55,9 +68,9 @@
 
         render: function() {
             var self = this;
-            var tasks = this.props.data.map(function (task) {
+            var tasks = this.props.data.map(function (task, i) {
                 return (
-                    <li>
+                    <li >
                         <Task task={task} onTaskUpdate={self.handleTaskUpdate}/>
                     </li>
                 );
@@ -84,6 +97,7 @@
                 }.bind(this)
             });
         },
+
         handleTaskSubmit: function(task) {
             $.ajax({
                 type: "POST",
@@ -115,6 +129,14 @@
             return {data: []};
         },
 
+        handleMarkAll: function(e) {
+            this.state.data.filter(function(task){
+                return task.completed === 0
+            }).forEach(function(task) {
+                task.completed = 1;
+            });
+        },
+
         componentDidMount: function() {
             this.loadTaskList();
 //            setInterval(this.loadTaskList, this.props.pollInterval);
@@ -122,12 +144,13 @@
 
         render: function() {
             return (
-                    <div className="tasksBox">
-                        <h1>Todos</h1>
-                        <AddTaskForm onTaskSubmit={this.handleTaskSubmit}/>
-                        <TasksList data={this.state.data} onTaskUpdate={this.handleTaskUpdate}/>
-                        <span>{this.state.itemsLeft} items left</span>
-                    </div>
+                <div className="tasksBox">
+                    <h1>Todos</h1>
+                    <AddTaskForm onTaskSubmit={this.handleTaskSubmit}/>
+                    <TasksList data={this.state.data} onTaskUpdate={this.handleTaskUpdate}/>
+                    <span>{this.state.itemsLeft} items left</span>
+                    <a href="#" onClick={this.handleMarkAll}>Mark all as complete</a>
+                </div>
             );
         }
     });

@@ -33,7 +33,7 @@ class TaskList(Resource):
     def post(self):
         args = parser.parse_args()
         task_id = str(uuid.uuid4())
-        TASKS[task_id] = {'task_id': task_id, 'label': args['label'], 'position': 0, 'completed': 0}
+        TASKS[task_id] = {'task_id': task_id, 'label': args['label'], 'position': len(TASKS), 'completed': 0}
         return TASKS[task_id], 204
 
 
