@@ -4,6 +4,7 @@ define([
     'react',
     'async'
 ], function (React, async) {
+    // @todo move these components to individual files
 
     var AddTaskForm = React.createClass({
         handleSubmit: function (e) {
@@ -58,17 +59,18 @@ define([
         },
 
         render: function () {
-            var self = this;
             var tasks = this.props.data.map(function (task, i) {
                 return (
                     <li >
-                        <Task task={task} onTaskUpdate={self.handleTaskUpdate}/>
+                        <Task task={task} onTaskUpdate={this.handleTaskUpdate}/>
                     </li>
                 );
-            });
-            return (<ul className="taskList">
-                        {tasks}
-            </ul>
+            }.bind(this));
+
+            return (
+                <ul className="taskList">
+                    {tasks}
+                </ul>
             );
         }
     });
@@ -79,10 +81,7 @@ define([
                 url: this.props.url,
                 dataType: 'json',
                 success: function (data) {
-                    var itemsLeft = data.filter(function (task) {
-                        return task.completed === 0
-                    }).length;
-                    this.setState({data: data, itemsLeft: itemsLeft});
+                    this.setState({data: data, itemsLeft: this.getTasksLeft().length});
                 }.bind(this),
                 error: function (xhr, status, err) {
                     console.error(this.props.url, status, err.toString());
@@ -126,26 +125,28 @@ define([
             return {data: []};
         },
 
+        getTasksLeft: function() {
+            return this.state.data.filter(function (task) {
+                return task.completed === 0;
+            });
+        },
+
         handleMarkAll: function (e) {
-            var self = this,
-                tasksLeft = this.state.data.filter(function (task) {
-                    return task.completed === 0;
-                });
-            async.eachSeries(tasksLeft, function(task, callback) {
+            async.eachSeries(this.getTasksLeft(), function(task, callback) {
                 task.completed=1;
-                self.handleTaskUpdate(task, callback);
-            }, function(err) {
+                this.handleTaskUpdate(task, callback);
+            }.bind(this), function(err) {
                 if(err) {
                     console.error(err);
                 }
 
-                self.loadTaskList();
-            });
+                this.loadTaskList();
+            }.bind(this));
         },
 
         componentDidMount: function () {
             this.loadTaskList();
-            //            setInterval(this.loadTaskList, this.props.pollInterval);
+            // setInterval(this.loadTaskList, this.props.pollInterval);
         },
 
         render: function () {
