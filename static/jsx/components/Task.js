@@ -24,6 +24,7 @@ define([
                             <input type="checkbox" checked={this.props.task.completed} onChange={this.handleChange}/>
                             <span className="taskLabel">{this.props.task.label}</span>
                         </label>
+                        <span className="ui-icon ui-icon-arrowthick-2-n-s"></span>
                     </div>
                 </div>
             );

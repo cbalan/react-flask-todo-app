@@ -22,7 +22,7 @@ body {
     padding: 10px 10px 0px 10px;
     border-width: 0 0 1px 0;
     border-style: dashed;
-    border-color: #f0f0f0;
+    border-color: #003147;
 }
 
 .tasksBox .addTaskForm {
@@ -34,7 +34,7 @@ body {
 
     border-width: 1px 0 0 0;
     border-style: dashed;
-    border-color: #f0f0f0;
+    border-color: #003147;
 }
 
 .tasksBox aside {
@@ -43,6 +43,15 @@ body {
 
 .taskList li {
     border-width: 0;
+}
+.taskList li:hover .ui-icon {
+    visibility: visible;
+}
+
+.taskList .ui-icon {
+    float: right;
+    visibility: hidden;
+    /*position: absolute; margin-right: 5px;*/
 }
 
 .taskList .taskLabel {
