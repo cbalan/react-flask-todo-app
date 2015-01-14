@@ -84,7 +84,7 @@ define([
             }.bind(this));
         },
 
-        handleSort: function(tasks) {
+        handleSort: function(fromTask, toTask) {
             // swap positions
             var position = fromTask.position;
             fromTask.position = toTask.position;
