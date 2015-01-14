@@ -17,6 +17,7 @@ define([
         },
 
         handleStart: function (e, ui) {
+            // used by sorting functionality to find updated items
             ui.item.fromPosition = ui.item.index();
         },
 
