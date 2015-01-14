@@ -1,8 +1,8 @@
 @import '../libs/bootstrap/dist/css/bootstrap.min.css';
-@import '../libs/font-awesome/css/font-awesome.css';
 
 body {
-    background-color: #f0f0f0;
+    background-color: rgb(246, 245, 245);
+    font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
 }
 
 .completed label{
@@ -19,22 +19,23 @@ body {
 }
 
 .tasksBox .title {
-    padding: 10px 10px 0px 10px;
+    padding: 25px 0px 25px 0px;
     border-width: 0 0 1px 0;
     border-style: dashed;
-    border-color: #003147;
+    border-color: rgb(228, 228, 228);
 }
 
 .tasksBox .addTaskForm {
-    padding: 10px 10px 0px 10px;
+    padding: 20px 20px 0px 20px;
 }
 
 .tasksBox .tasksBoxBar {
-    padding: 10px;
+    color: rgb(51, 51, 51);
+    padding: 20px;
 
     border-width: 1px 0 0 0;
     border-style: dashed;
-    border-color: #003147;
+    border-color: rgb(228, 228, 228);
 }
 
 .tasksBox aside {
@@ -57,8 +58,9 @@ body {
 .taskList .taskLabel {
     border-width: 0;
     padding-left: 7px;
+    font-weight: 300;
 }
 
 .taskList li:nth-child(odd) {
-    background-color: #f4f4f4;
+    background-color: rgb(244, 247, 250);
 }

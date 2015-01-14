@@ -7,8 +7,6 @@
     "jquery-ui": "*",
     "requirejs": "*",
     "react": "*",
-    "font-awesome": "*",
-    "async": "*",
-    "normalize.css": "*"
+    "async": "*"
   }
 }

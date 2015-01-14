@@ -14,7 +14,7 @@ define([
         render: function () {
             var classes = 'task';
             if (this.props.task.completed === 1) {
-                classes += ' completed';
+                classes += ' completed disabled';
             }
 
             return (

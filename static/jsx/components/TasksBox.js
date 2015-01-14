@@ -112,7 +112,7 @@ define([
                 <div className="tasksBox panel panel-default">
 
                         <div className="title text-center">
-                            <h1>Todos</h1>
+                            <h3><strong>Todos</strong></h3>
                         </div>
 
                         <div className="addTaskForm">
