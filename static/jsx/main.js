@@ -24,6 +24,10 @@ require.config({
 require([
     'react',
     'components/App',
+    'components/TasksBox',
+    'components/AddTaskForm',
+    'components/TasksList',
+    'components/Task',
     'jquery',
     'bootstrap',
     'async'
