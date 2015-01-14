@@ -55,6 +55,10 @@ Will use python's shelve
 ## Design updates
  - dropped python shelve as persistance. not required. in memory, application scope store will be used.
  - restful api will be implemented with swagger
+ - used requirejs to load all js dependencies
+ - task completed field was switched from bool to int to allow clear communication between client and server components
+ - missed to highlight that internationalization is not supported
+
 
 
 

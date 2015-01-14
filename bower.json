@@ -4,6 +4,7 @@
   "dependencies": {
     "bootstrap": "*",
     "jquery": "*",
+    "jquery-ui": "*",
     "requirejs": "*",
     "react": "*",
     "font-awesome": "*",

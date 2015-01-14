@@ -3,9 +3,10 @@
 define([
     'react',
     'async',
+    'jquery',
     'components/AddTaskForm',
     'components/TasksList'
-], function (React, async, AddTaskForm, TasksList) {
+], function (React, async, jquery, AddTaskForm, TasksList) {
 
     var TasksBox = React.createClass({
         loadTaskList: function () {
@@ -83,6 +84,23 @@ define([
             }.bind(this));
         },
 
+        handleSort: function(tasks) {
+            // swap positions
+            var position = fromTask.position;
+            fromTask.position = toTask.position;
+            toTask.position = position;
+
+            async.eachSeries([fromTask, toTask], function (task, callback) {
+                this.handleTaskUpdate(task, callback);
+            }.bind(this), function (err) {
+                if (err) {
+                    console.error(err);
+                }
+
+                this.loadTaskList();
+            }.bind(this));
+        },
+
         componentDidMount: function () {
             this.loadTaskList();
             // setInterval(this.loadTaskList, this.props.pollInterval);
@@ -93,7 +111,7 @@ define([
                 <div className="tasksBox">
                     <h1>Todos</h1>
                     <AddTaskForm onTaskSubmit={this.handleTaskSubmit}/>
-                    <TasksList data={this.state.data} onTaskUpdate={this.handleTaskUpdate}/>
+                    <TasksList data={this.state.data} onTaskUpdate={this.handleTaskUpdate} onSort={this.handleSort} />
                     <span>{this.state.itemsLeft} items left</span>
                     <a href="#" onClick={this.handleMarkAll}>Mark all as complete</a>
                 </div>

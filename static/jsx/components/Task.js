@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 define([
-    'react',
+    'react'
 ], function (React) {
 
     var Task = React.createClass({
@@ -20,9 +20,11 @@ define([
             return (
                 <div className={classes}>
                     <input type="checkbox" checked={this.props.task.completed} onChange={this.handleChange}/>
+
                     <span className="taskLabel">
                         {this.props.task.label}
                     </span>
+                    <span class="ui-icon ui-icon-arrowthick-2-n-s"/>
                 </div>
             );
         }

@@ -2,6 +2,7 @@ require.config({
     paths: {
         react: '../libs/react/react',
         jquery: '../libs/jquery/dist/jquery.min',
+        'jquery-ui': '../libs/jquery-ui/jquery-ui.min',
         bootstrap: '../libs/bootstrap/dist/js/bootstrap.min',
         async: '../libs/async/lib/async'
     },
@@ -23,14 +24,7 @@ require.config({
 
 require([
     'react',
-    'components/App',
-    'components/TasksBox',
-    'components/AddTaskForm',
-    'components/TasksList',
-    'components/Task',
-    'jquery',
-    'bootstrap',
-    'async'
+    'components/App'
 ],
 function(React, App) {
     React.render(App(), document.getElementById('app'));
