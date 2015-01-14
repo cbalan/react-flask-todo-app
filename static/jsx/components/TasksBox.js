@@ -72,6 +72,7 @@ define([
         },
 
         handleMarkAll: function (e) {
+            e.preventDefault();
             async.eachSeries(this.getTasksLeft(), function (task, callback) {
                 task.completed = 1;
                 this.handleTaskUpdate(task, callback);
@@ -108,12 +109,25 @@ define([
 
         render: function () {
             return (
-                <div className="tasksBox">
-                    <h1>Todos</h1>
-                    <AddTaskForm onTaskSubmit={this.handleTaskSubmit}/>
-                    <TasksList data={this.state.data} onTaskUpdate={this.handleTaskUpdate} onSort={this.handleSort} />
-                    <span>{this.state.itemsLeft} items left</span>
-                    <a href="#" onClick={this.handleMarkAll}>Mark all as complete</a>
+                <div className="tasksBox panel panel-default">
+
+                        <div className="title text-center">
+                            <h1>Todos</h1>
+                        </div>
+
+                        <div className="addTaskForm">
+                            <AddTaskForm onTaskSubmit={this.handleTaskSubmit}/>
+                        </div>
+
+                        <div class="taskList">
+                            <TasksList data={this.state.data} onTaskUpdate={this.handleTaskUpdate} onSort={this.handleSort} />
+                        </div>
+
+                        <div className="tasksBoxBar">
+                            <span>{this.state.itemsLeft} items left</span>
+                            <aside><a href="#" onClick={this.handleMarkAll}>Mark all as complete</a></aside>
+                        </div>
+
                 </div>
             );
         }

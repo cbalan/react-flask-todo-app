@@ -8,6 +8,7 @@
     "requirejs": "*",
     "react": "*",
     "font-awesome": "*",
-    "async": "*"
+    "async": "*",
+    "normalize.css": "*"
   }
 }

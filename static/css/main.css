@@ -1,7 +1,55 @@
-.completed {
+@import '../libs/bootstrap/dist/css/bootstrap.min.css';
+@import '../libs/font-awesome/css/font-awesome.css';
+
+body {
+    background-color: #f0f0f0;
+}
+
+.completed label{
     text-decoration: line-through;
 }
 
-.tasksBox ul { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-.tasksBox ul li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-.tasksBox ul li span.ui-icon { position: absolute; margin-right: 1.3em; }
+.app {
+    margin: 0 auto;
+    width: 500px;
+}
+
+.tasksBox {
+    margin-top:50px;
+}
+
+.tasksBox .title {
+    padding: 10px 10px 0px 10px;
+    border-width: 0 0 1px 0;
+    border-style: dashed;
+    border-color: #f0f0f0;
+}
+
+.tasksBox .addTaskForm {
+    padding: 10px 10px 0px 10px;
+}
+
+.tasksBox .tasksBoxBar {
+    padding: 10px;
+
+    border-width: 1px 0 0 0;
+    border-style: dashed;
+    border-color: #f0f0f0;
+}
+
+.tasksBox aside {
+    float: right;
+}
+
+.taskList li {
+    border-width: 0;
+}
+
+.taskList .taskLabel {
+    border-width: 0;
+    padding-left: 7px;
+}
+
+.taskList li:nth-child(odd) {
+    background-color: #f4f4f4;
+}

@@ -37,14 +37,14 @@ define([
         render: function () {
             var tasks = this.props.data.map(function (task, i) {
                 return (
-                    <li className="ui-state-default">
+                    <li className="list-group-item">
                         <Task task={task} onTaskUpdate={this.handleTaskUpdate}/>
                     </li>
                 );
             }.bind(this));
 
             return (
-                <ul className="taskList">
+                <ul className="taskList list-group">
                     {tasks}
                 </ul>
             );

@@ -19,9 +19,15 @@ define([
 
         render: function () {
             return (
-                <form className="addTaskForm" onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="What needs to be done ?" ref="label" />
-                    <input type="submit" value="Add Todo" />
+                <form className="addTaskForm form-horizontal" onSubmit={this.handleSubmit}>
+                    <div className="form-group">
+                        <div className="col-sm-9">
+                            <input type="text" className="form-control input-large"  placeholder="What needs to be done ?" ref="label" />
+                        </div>
+                        <div className="col-sm-2">
+                            <button type="submit" className="btn btn-primary">Add Todo</button>
+                        </div>
+                    </div>
                 </form>
             );
         }
