@@ -30,7 +30,6 @@ Inspired from https://github.com/abhiomkar/flask-react
 ## Outstanding items
  - re-enable update tasks list on timer. Timer configuration is not properly handled.
  - add tests to describe the main functionalities
- - styling
  - api documentation (swagger annotations)
  - task sort is not natural. On drag and drop, only source and destination positions are swapped.
  In order to support a natural sort, all items in between must shifted. This might be a good reason
