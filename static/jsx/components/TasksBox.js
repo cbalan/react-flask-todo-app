@@ -104,7 +104,7 @@ define([
 
         componentDidMount: function () {
             this.loadTaskList();
-            // setInterval(this.loadTaskList, this.props.pollInterval);
+            setInterval(this.loadTaskList, this.props.pollInterval);
         },
 
         render: function () {

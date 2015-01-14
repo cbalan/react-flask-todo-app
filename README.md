@@ -28,7 +28,6 @@ Inspired from https://github.com/abhiomkar/flask-react
      - Task - representation of one task item
 
 ## Outstanding items
- - re-enable update tasks list on timer. Timer configuration is not properly handled.
  - add tests to describe the main functionalities
  - api documentation (swagger annotations)
  - task sort is not natural. On drag and drop, only source and destination positions are swapped.

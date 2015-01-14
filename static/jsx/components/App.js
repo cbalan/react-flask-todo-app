@@ -7,7 +7,7 @@ define([
 
     var App = React.createClass({
         render: function () {
-            return (<TasksBox url="/tasks" pollInterval="{5000}"  />);
+            return (<TasksBox url="/tasks" pollInterval="5000"  />);
         }
     });
 
