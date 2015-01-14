@@ -17,7 +17,7 @@ Inspired from https://github.com/abhiomkar/flask-react
 
  * run flask server
 
-        python todo.py
+        python app.py
 
 ## Initial design
 
@@ -45,12 +45,12 @@ Inspired from https://github.com/abhiomkar/flask-react
   - publicly available
 
 ## Persistence.
-will use python's shelve
+Will use python's shelve
 
 ## App structure. Backend
-- will use flask.
-- react app will be loaded on flask app / route
-- the api will be available under application root. ie. /tasks
+ - will use flask.
+ - react app will be loaded on flask app / route
+ - the api will be available under application root. ie. /tasks
 
 ## Design updates
  - dropped python shelve as persistance. not required. in memory, application scope store will be used.
