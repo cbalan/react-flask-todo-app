@@ -50,7 +50,7 @@ define([
                     if (!callback) {
                         this.loadTaskList();
                     }
-                    else callback(data);
+                    else callback();
                 }.bind(this),
                 error: function (xhr, status, err) {
                     console.error(this.props.url, status, err.toString());
