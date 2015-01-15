@@ -17,10 +17,7 @@ define([
                     this.setState({
                         data: data.sort(function (a, b) {
                             return a.position - b.position;
-                        }),
-                        itemsLeft: data.filter(function (task) {
-                            return task.completed === 0;
-                        }).length
+                        })
                     });
                 }.bind(this),
                 error: function (xhr, status, err) {
@@ -108,6 +105,8 @@ define([
         },
 
         render: function () {
+            var itemsLeft = this.getTasksLeft().length;
+
             return (
                 <div className="tasksBox panel panel-default">
 
@@ -124,7 +123,7 @@ define([
                         </div>
 
                         <div className="tasksBoxBar">
-                            <span>{this.state.itemsLeft} items left</span>
+                            <span>{itemsLeft} items left</span>
                             <aside><a href="#" onClick={this.handleMarkAll}>Mark all as complete</a></aside>
                         </div>
 
