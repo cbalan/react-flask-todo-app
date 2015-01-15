@@ -20,6 +20,9 @@ Inspired from https://github.com/abhiomkar/flask-react
 
         python app.py
 
+ * locations:
+    - tasks app: http://127.0.0.1:5000/
+    - swagger.json: http://127.0.0.1:5000/swagger.json
 
 ## React components notes
  - TasksBox - main component. In charge with hooking frontend components with the backend api
@@ -29,7 +32,6 @@ Inspired from https://github.com/abhiomkar/flask-react
 
 ## Outstanding items
  - add tests to describe the main functionalities
- - api documentation (swagger annotations)
  - task sort is not natural. On drag and drop, only source and destination positions are swapped.
  In order to support a natural sort, all items in between must shifted. This might be a good reason
  to refactor tasks update api to accept multiple tasks updates
