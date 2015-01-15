@@ -109,24 +109,22 @@ define([
 
             return (
                 <div className="tasksBox panel panel-default">
+                    <div className="title text-center">
+                        <h3><strong>Todos</strong></h3>
+                    </div>
 
-                        <div className="title text-center">
-                            <h3><strong>Todos</strong></h3>
-                        </div>
+                    <div className="addTaskForm">
+                        <AddTaskForm onTaskSubmit={this.handleTaskSubmit}/>
+                    </div>
 
-                        <div className="addTaskForm">
-                            <AddTaskForm onTaskSubmit={this.handleTaskSubmit}/>
-                        </div>
+                    <div class="taskList">
+                        <TasksList data={this.state.data} onTaskUpdate={this.handleTaskUpdate} onSort={this.handleSort} />
+                    </div>
 
-                        <div class="taskList">
-                            <TasksList data={this.state.data} onTaskUpdate={this.handleTaskUpdate} onSort={this.handleSort} />
-                        </div>
-
-                        <div className="tasksBoxBar">
-                            <span>{itemsLeft} items left</span>
-                            <aside><a href="#" onClick={this.handleMarkAll}>Mark all as complete</a></aside>
-                        </div>
-
+                    <div className="tasksBoxBar">
+                        <span>{itemsLeft} items left</span>
+                        <aside><a href="#" onClick={this.handleMarkAll}>Mark all as complete</a></aside>
+                    </div>
                 </div>
             );
         }
