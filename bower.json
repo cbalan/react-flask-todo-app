@@ -1,5 +1,5 @@
 {
-  "name": "TicTailHack2.2-reply",
+  "name": "react-flask-todo-app",
   "version": "0.0.1",
   "dependencies": {
     "bootstrap": "*",
