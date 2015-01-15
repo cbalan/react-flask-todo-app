@@ -1,19 +1,14 @@
-from flask import Flask
-from flask.ext.restplus import Api, Resource
+from flask import Flask, Blueprint, url_for
+from flask.ext.restplus import Api, Resource, apidoc
 
 # required for task id generation
 import uuid
 
 app = Flask(__name__, static_folder='static')
 
-
-@app.route('/')
-def index():
-    return app.send_static_file('index.html')
-
-
-# swagger app wrapper
-api = Api(app, title='Tasks API', ui=False)
+# swagger init
+blueprint = Blueprint('api', __name__)
+api = Api(blueprint, title='Tasks API', ui=False)
 
 
 # tasks persisted in the app scope
@@ -72,6 +67,20 @@ class Task(Resource):
             task['completed'] = args['completed']
 
         return task, 200
+
+
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
+
+
+@blueprint.route('/doc')
+def swagger_ui():
+    return apidoc.ui_for(api)
+
+
+app.register_blueprint(blueprint)
+app.register_blueprint(apidoc.apidoc)
 
 
 if __name__ == '__main__':

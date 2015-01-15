@@ -21,8 +21,9 @@ Inspired from https://github.com/abhiomkar/flask-react
         python app.py
 
  * locations:
-    - tasks app: http://127.0.0.1:5000/
+    - tasks app: http://127.0.0.1:5000
     - swagger.json: http://127.0.0.1:5000/swagger.json
+    - api docs: http://127.0.0.1:5000/doc
 
 ## React components notes
  - TasksBox - main component. In charge with hooking frontend components with the backend api
