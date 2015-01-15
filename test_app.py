@@ -63,7 +63,7 @@ class TasksTestCase(TestCase):
 
     def test_update_position(self):
         """
-        Test mark task as completed
+        Test update task position
         """
         self.client.post('/tasks', data=dict(label='Task 1'))
         self.client.post('/tasks', data=dict(label='Task 2'))
