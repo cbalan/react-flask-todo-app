@@ -74,7 +74,7 @@ def index():
     return app.send_static_file('index.html')
 
 
-@blueprint.route('/doc')
+@blueprint.route('/doc/')
 def swagger_ui():
     return apidoc.ui_for(api)
 
