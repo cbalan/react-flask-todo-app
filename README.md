@@ -32,7 +32,6 @@ Inspired from https://github.com/abhiomkar/flask-react
      - Task - representation of one task item
 
 ## Outstanding items
- - add tests to describe the main functionalities
  - task sort is not natural. On drag and drop, only source and destination positions are swapped.
  In order to support a natural sort, all items in between must shifted. This might be a good reason
  to refactor tasks update api to accept multiple tasks updates
