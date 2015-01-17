@@ -117,7 +117,7 @@ define([
                         <AddTaskForm onTaskSubmit={this.handleTaskSubmit}/>
                     </div>
 
-                    <div class="taskList">
+                    <div className="taskList">
                         <TasksList data={this.state.data} onTaskUpdate={this.handleTaskUpdate} onSort={this.handleSort} />
                     </div>
 

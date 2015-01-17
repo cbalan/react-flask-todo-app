@@ -19,7 +19,7 @@ define([
 
             return (
                 <div className={classes}>
-                    <div class="checkbox">
+                    <div className="checkbox">
                         <label>
                             <input type="checkbox" checked={this.props.task.completed} onChange={this.handleChange}/>
                             <span className="taskLabel">{this.props.task.label}</span>
